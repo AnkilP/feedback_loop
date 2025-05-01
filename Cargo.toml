@@ -1,0 +1,15 @@
+[package]
+name = "auto_instrumentation"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lambda_runtime = "0.9"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+octocrab = "0.30"
+base64 = "0.21"
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"

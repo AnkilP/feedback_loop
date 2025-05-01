@@ -1,0 +1,35 @@
+name: Enhance PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Dump GitHub event
+        run: cat "$GITHUB_EVENT_PATH"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Install dependencies
+        run: cargo build --release
+
+      - name: Run PR enhancement bot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: ./target/release/auto_instrumentation
