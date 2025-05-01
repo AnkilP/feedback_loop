@@ -104,7 +104,7 @@ async fn enhance_with_claude_api(
     code: &str,
 ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
     let prompt = format!(
-        "You are a Rust code expert. Analyze the following code and add appropriate log messages using tracing for important operations, errors, and state changes. Add debug, info, warn, and error level logs where appropriate. Don't change any logic, just add logging. Return only the enhanced code without explanations.
+        "You are a Rust code expert. Analyze the following code and add appropriate metric and log messages using tracing for important operations, errors, and state changes. Add debug, info, warn, and error level logs where appropriate. Don't change any logic, just add logging. Return only the enhanced code without explanations.
 
 ```rust
 {}
